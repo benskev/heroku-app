@@ -2,9 +2,5 @@
     "name": "ben1a",
     "license": "MIT",
     "type": "project",
-    "description": "Ben's app",
-    "require": {
-        "php"                                  : ">=5.3.3",
-        "ext-pdo_sqlite"                       : "*"
-    }
+    "description": "Ben's app"
 }
