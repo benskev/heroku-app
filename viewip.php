@@ -32,6 +32,8 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 </script>
 </head>
 <body>
+<div class='col-md-3'></div>
+<div class='col-md-6'>
 <table class='table table-bordered table-responsive table-striped'>
 <thead>
 <tr><td colspan=2><h2>IP Accesses</h2></td></tr>
@@ -53,4 +55,7 @@ while (($line = fgets($f)) !== false) {
 ?>
 </tbody>
 </table>
+</div>
+<div class='col-md-3'></div>
+
 </body>
