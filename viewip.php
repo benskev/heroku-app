@@ -36,7 +36,7 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 <div class='col-md-6'>
 <table class='table table-bordered table-responsive table-striped'>
 <thead>
-<tr><td colspan=2><h2>IP Accesses</h2></td></tr>
+<tr><td colspan=3><h2>IP Accesses</h2></td></tr>
 <tr><th>Date</th><th>Time</th><th>IP</th></tr>
 </thead>
 <tfoot>
