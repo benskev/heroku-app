@@ -16,7 +16,7 @@
  }
  echo $ip;
  $f = fopen("ips.txt","a") or die("Unable to open appended file!");
- fwrite($f, date("Y-n-j H:i:s") . " - " . $ip) or die("Cannot write to file");
+ fwrite($f, date("Y-n-j H:i:s") . " - " . $ip . "\n") or die("Cannot write to file");
  fclose($f) or die("Cannot close the file");
  //print_r($_SERVER);
 ?>
