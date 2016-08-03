@@ -4,7 +4,7 @@
     "authors": [
         {
             "name": "Ben",
-            "email": "your@email.here"
+            "email": "ben@benskev.co.za"
         }
     ],
     "require": {
@@ -15,5 +15,5 @@
         "titon/test": "dev-master",
         "ext-sqlite3":"*"
     },
-    "config":{"disable-tls":true}
+    "config":{"disable-tls":false}
 }
