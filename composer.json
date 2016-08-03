@@ -1,6 +1,19 @@
 {
-    "name": "ben1a",
-    "license": "MIT",
-    "type": "project",
-    "description": "Ben's app"
+    "name": "vendor/heroku-app",
+    "description": "Description of project heroku-app.",
+    "authors": [
+        {
+            "name": "Ben",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-sqlite3": "*"
+    },
+    "require-dev": {
+        "titon/test": "dev-master",
+        "ext-sqlite3":"*"
+    },
+    "config":{"disable-tls":true}
 }
