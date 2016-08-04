@@ -6,7 +6,7 @@ class MyDB extends SQLite3
         $this->open('test.db');
      }
 
-     function run($sql)
+     function get($sql)
      {
            $ret = $this->exec($sql);
            if(!$ret){
@@ -17,6 +17,14 @@ class MyDB extends SQLite3
            }
            return $row;
            $db->close();
+     }
+
+     function run($sql)
+     {
+       $ret = $this->exec($sql);
+       if(!$ret){
+          echo $this->lastErrorMsg();
+       }
      }
   }
 ?>
