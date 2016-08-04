@@ -21,6 +21,6 @@
  fwrite($f, date("Y-n-j,H:i:s") . "," . $ip . "\n") or die("Cannot write to file");
  fclose($f) or die("Cannot close the file");
  $db = new MyDB() or die ("SQL CLASS ERROR");
- $db->run("insert into ip (address,aDate,aTime) values ('" . $ip . "','".date("Y-n-j")."','".date("H:i:s")."');") or die ("ERROR");
+ $db->run("insert into ip (address,aDate,aTime) values ('" . $ip . "','".date("Y-n-j")."','".date("H:i:s")."');");
  //print_r($_SERVER);
 ?>
