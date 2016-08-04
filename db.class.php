@@ -1,3 +1,4 @@
+<?php
 class MyDB extends SQLite3
   {
      function __construct()
@@ -18,3 +19,4 @@ class MyDB extends SQLite3
            $db->close();
      }
   }
+?>

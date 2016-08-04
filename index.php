@@ -3,7 +3,7 @@
 /*
  * show me your ip!
  */
-include "db.class.ophp";
+include "db.class.php";
 
  ini_set('display_errors','on');
  header("Content-Type: text/plain");
