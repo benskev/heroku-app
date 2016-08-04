@@ -12,7 +12,7 @@ class MyDB extends SQLite3
            if(!$ret){
               echo $this->lastErrorMsg();
            } else {
-             $row = $ret->fetchArray(SQLITE3_ASSOC)
+             $row = $ret->fetchArray(SQLITE3_ASSOC);
              //echo "Records created successfully\n";
            }
            return $row;
