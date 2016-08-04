@@ -3,9 +3,9 @@
 /*
  * show me your ip!
  */
-include "db.class.php";
 
  ini_set('display_errors','on');
+ include "db.class.php";
  header("Content-Type: text/plain");
 
  if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
