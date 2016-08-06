@@ -1,4 +1,5 @@
 <!DOCTYPE html><?php
+include "db.class.php";
 if (file_exists("ips.txt")){
 	$f=fopen("ips.txt","r");
 }
@@ -38,12 +39,14 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 </tfoot>
 <tbody>
 <?php
-if (file_exists("ips.txt"))
+if (file_exists("test.db"))
 {
-while (($line = fgets($f)) !== false) {
-	// process the line read.
-	$d=explode(",",$line);
-	echo "<td>".$d[0]."</td><td>".$d[1]."</td><td>".$d[2]."</td></tr>\n";
+$db = new MyDB();	// process the line read.
+$r=$db->get("select * from ip");
+foreach ($r as $i->$res)
+{
+	echo "<td>".$res['aDate']."</td><td>".$res['aTime']."</td><td>".$ip['address']."</td></tr>\n";
+}
 }
 }
 ?>
