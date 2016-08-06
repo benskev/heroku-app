@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors','on');
 class MyDB extends SQLite3
   {
      function __construct()
