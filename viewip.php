@@ -1,4 +1,5 @@
 <!DOCTYPE html><?php
+ini_set('display_errors','on');
 include "db.class.php";
 if (file_exists("ips.txt")){
 	$f=fopen("ips.txt","r");
