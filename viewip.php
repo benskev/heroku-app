@@ -1,9 +1,7 @@
-<!DOCTYPE html><?php
+<!DOCTYPE html>
+<?php
 ini_set('display_errors','on');
 //include "db.class.php";
-if (file_exists("ips.txt")){
-	$f=fopen("ips.txt","r");
-}
 ?>
 <title>View IP Requests</title>
 <head>
@@ -43,7 +41,7 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 if (file_exists("test.db"))
 {
 //$db = new MyDB();	// process the line read.
-$r=SQLite3::exec("select * from ip");
+$r=SQLite3::exec("select * from ip") or die ("CANNOT RUN QUERY");
 $db = new MyDB();	// process the line read.
 $r=$db->get("select * from ip");
 print_r($r);
@@ -52,6 +50,9 @@ foreach ($r as $i->$res)
 {
 	echo "<td>".$res['aDate']."</td><td>".$res['aTime']."</td><td>".$ip['address']."</td></tr>\n";
 }
+}
+else {
+	echo "<tr><td>ERROR</td></tr>";
 }
 }
 ?>
