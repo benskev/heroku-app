@@ -39,8 +39,8 @@ if (file_exists("test.db"))
 //$db = new MyDB();	// process the line read.
 $s = new SQLite3();
 $r=$s->exec("select * from ip") or die ("CANNOT RUN QUERY");
-$db = new MyDB();	// process the line read.
-$r=$db->get("select * from ip");
+//$db = new MyDB();	// process the line read.
+//$r=$db->get("select * from ip");
 print_r($r);
 //die();
 foreach ($r as $i->$res)
