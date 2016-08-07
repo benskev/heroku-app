@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <head>
+<<<<<<< HEAD
 	<title>View IP Requests</title>
+=======
+<title>View IP Requests</title>
+>>>>>>> origin/master
 <style>
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com) | Copyright 2011-2016 Twitter, Inc. | Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -34,6 +38,7 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 </tfoot>
 <tbody>
 <?php
+ini_set('display_errors','on');
 if (file_exists("test.db"))
 {
 //$db = new MyDB();	// process the line read.
