@@ -51,7 +51,7 @@ foreach ($r as $i->$res)
 else {
 	echo "<tr><td>ERROR</td></tr>";
 }
-}
+
 ?>
 </tbody>
 </table>
