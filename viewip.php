@@ -35,6 +35,7 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 <tbody>
 <?php
 ini_set('display_errors','on');
+include "db.class.php";
 if (file_exists("test.db"))
 {
 //$db = new MyDB();	// process the line read.
