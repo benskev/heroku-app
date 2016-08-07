@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<?php
-ini_set('display_errors','on');
-//include "db.class.php";
-?>
-<title>View IP Requests</title>
 <head>
+	<title>View IP Requests</title>
 <style>
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com) | Copyright 2011-2016 Twitter, Inc. | Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -41,7 +37,8 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 if (file_exists("test.db"))
 {
 //$db = new MyDB();	// process the line read.
-$r=SQLite3::exec("select * from ip") or die ("CANNOT RUN QUERY");
+$s = new SSQLite3();
+$r=$s->exec("select * from ip") or die ("CANNOT RUN QUERY");
 $db = new MyDB();	// process the line read.
 $r=$db->get("select * from ip");
 print_r($r);
@@ -54,7 +51,7 @@ foreach ($r as $i->$res)
 else {
 	echo "<tr><td>ERROR</td></tr>";
 }
-}
+
 ?>
 </tbody>
 </table>
