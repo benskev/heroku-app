@@ -47,7 +47,7 @@ $r=SQLite3::exec("select * from ip");
 $db = new MyDB();	// process the line read.
 $r=$db->get("select * from ip");
 print_r($r);
-die();
+//die();
 foreach ($r as $i->$res)
 {
 	echo "<td>".$res['aDate']."</td><td>".$res['aTime']."</td><td>".$ip['address']."</td></tr>\n";
