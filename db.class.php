@@ -10,14 +10,14 @@ class MyDB extends SQLite3
 
      function get($sql)
      {
-           $ret = $this->exec($sql);
+           $ret = $this->query($sql);
            if(!$ret){
               echo $this->lastErrorMsg();
            } else {
-             $row = $ret->fetchArray(SQLITE3_ASSOC);
+             //$row = $ret->fetchArray(SQLITE3_ASSOC);
              //echo "Records created successfully\n";
            }
-           return $row;
+           return $ret;
            $db->close();
      }
 

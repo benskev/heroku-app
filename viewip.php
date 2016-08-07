@@ -26,11 +26,11 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 <div class='col-md-6 well'>
 <table class='table table-bordered table-responsive table-striped'>
 <thead>
-<tr><td colspan=3><h2>IP Access Log</h2></td></tr>
-<tr><th>Date</th><th>Time</th><th>IP</th></tr>
+<tr><td colspan=4><h2>IP Access Log</h2></td></tr>
+<tr><th>Date</th><th>Time</th><th>IP</th><th>Request Type</th></tr>
 </thead>
 <tfoot>
-<tr><th>Date</th><th>Time</th><th>IP</th></tr>
+<tr><th>Date</th><th>Time</th><th>IP</th><th>Request Type</th></tr>
 </tfoot>
 <tbody>
 <?php
@@ -38,17 +38,11 @@ ini_set('display_errors','on');
 include "db.class.php";
 if (file_exists("test.db"))
 {
-//$db = new MyDB();	// process the line read.
-//$s = new SQLite3();
-//$s->open("test.db");
-//$r=$s->exec("select * from ip") or die ("CANNOT RUN QUERY");
 $db = new MyDB();	// process the line read.
 $r=$db->get("select * from ip");
-print_r($r);
-//die();
-foreach ($r as $i->$res)
+while ($res = $r->fetchArray())
 {
-	echo "<td>".$res['aDate']."</td><td>".$res['aTime']."</td><td>".$ip['address']."</td></tr>\n";
+	echo "<td>".$res['aDate']."</td><td>".$res['aTime']."</td><td>".$res['address']."</td><td>".strtoupper($res['type'])."</td></tr>\n";
 }
 }
 else {
