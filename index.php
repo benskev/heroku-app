@@ -60,6 +60,9 @@ switch ($_SERVER['REQUEST_URI'])
   header("Content-Type: text/html");
     echo getHelp();
   break;
+  default:
+    echo $_SERVER['REQUEST_URI'];
+  break;
 
 }
 $db = new MyDB() or die ("SQL CLASS ERROR");
@@ -76,7 +79,7 @@ $db->run("insert into ip (type,address,aDate,aTime) values ('$type','" . showIP2
 function getHelp(){
     echo "<!DOCTYPE html>
 <head>
-	<title>View IP Requests</title>
+	<title>Help</title>
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
   <!-- Optional theme -->
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
