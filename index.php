@@ -9,20 +9,21 @@
  //print_r($_SERVER);
  //die();
 
-header("Content-Type: text/plain");
-
  if ($_SERVER['REQUEST_URI'] != "/")
  {
 //echo $_SERVER['REQUEST_URI'];
 switch ($_SERVER['REQUEST_URI'])
 {
   case "/ip":
+  header("Content-Type: text/plain");
     echo showIP();
   break;
   case "/fqdn":
+  header("Content-Type: text/plain");
     echo showFQDN();
   break;
   case "/ping":
+  header("Content-Type: text/plain");
     $out = array();
     $pat = '/Win/';
     if (preg_match($pat,$_SERVER['SERVER_SIGNATURE']))
@@ -36,19 +37,28 @@ switch ($_SERVER['REQUEST_URI'])
     print_r($out);
   break;
   case "/dl":
+  header("Content-Type: text/plain");
     echo "Under Construction.";
   break;
   case "/ul":
+  header("Content-Type: text/plain");
     echo "Under Construction.";
   break;
   case "/server":
+  header("Content-Type: text/plain");
       echo json_encode($_SERVER);
   break;
   case "/os":
+  header("Content-Type: text/plain");
     echo getOS();
   break;
   case "/browser":
+  header("Content-Type: text/plain");
     echo getBrowser();
+  break;
+  case "/help":
+  header("Content-Type: text/html");
+    echo getHelp();
   break;
 
 }
@@ -61,6 +71,34 @@ $db->run("insert into ip (type,address,aDate,aTime) values ('$type','" . showIP2
    # code...
    echo showIP();
 
+}
+
+function getHelp(){
+    echo "<!DOCTYPE html>
+<head>
+	<title>View IP Requests</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+  <!-- Optional theme -->
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
+  <!-- Latest compiled and minified jQuery -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>";
+
+    echo "<div class='col-md-4'></div>";
+    echo "<div class='col-md-4'>";
+    echo "<div class='well'>";
+    echo "<h2>Help</h2>";
+    echo "<p>/ip - list your ip address<BR>";
+    echo "/fqdn - list your FQDN<BR>";
+    echo "/ping - ping your IP<BR>";
+    echo "/dl - download speed<BR>";
+    echo "/ul - upload speed<BR>";
+    echo "/server - server info<BR>";
+    echo "/os - show operating system<BR>";
+    echo "/browser - browser system<BR></p>";
+    echo "</div>";
+    echo "</div>";
 }
 
 
