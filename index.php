@@ -145,7 +145,7 @@ echo showIP();
 
 function outputCSV($data) {
         //$outputBuffer = fopen("php://output", 'w');
-        if (sizeOf($data) == 1){$data = $data[0];}
+        if (sizeOf($data) == 1 && isset($data[0]['REQUEST_URI'])){$data = $data[0];}
         //foreach($data as $val) {
         //    fputcsv($outputBuffer, array($val));
         //}
