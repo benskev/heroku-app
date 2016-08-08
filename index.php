@@ -61,19 +61,151 @@ switch ($_SERVER['REQUEST_URI'])
     echo getHelp();
   break;
   default:
-    echo $_SERVER['REQUEST_URI'];
+    //echo $_SERVER['REQUEST_URI'] . "<BR>\n";
+    $s = explode("/",$_SERVER['REQUEST_URI']);
+    //print_r($s);
+    //echo "<BR>\n";
+    if (sizeOf($s) == 3)
+    {
+      switch (strtolower($s[2]))
+      {
+        case "asn":
+        case "asn1":
+        case "xml":
+          header("Content-Type: application/xml");
+          //$xml = new SimpleXMLElement('<root/>');
+          $data = processData();
+          //echo "XML: " . $data . "<BR>\n";
+          //array_walk_recursive($data, array ($xml, 'addChild'));
+          //print_r($data);
+          //die();
+          if ($s[1]=="server")
+          {
+            echo '<?xml version="1.0"?><root>';
+            $xml = "";
+            foreach ($data[0] as $i=>$d)
+            {
+              $xml .= "<" . $i . ">".$d."</".$i.">";
+            }
+            //array_walk_recursive($data, array ($xml, 'addChild'));
+            echo $xml . "</root>";
+            //print_r($xml);
+          }
+          else {
+            # code...
+            $xml = new SimpleXMLElement('<root/>');
+            $data = processData();
+            //echo "XML: " . $data . "<BR>\n";
+            array_walk_recursive($data, array ($xml, 'addChild'));
+            echo $xml->asXML();
+          }
+          break;
+        case "xml-rpc":
+
+          break;
+        case "json":
+        header("Content-Type:text/plain");
+          echo json_encode(processData());
+          break;
+        case "jsonp":
+
+          break;
+        case "bson":
+          $bson = MongoDB\BSON\fromPHP(processData());
+          echo bin2hex($bson), "\n";
+          break;
+        case "csv":
+        header("Content-Type: text/plain");
+          outputCSV(processData());
+          break;
+        case "javaarray":
+
+          break;
+        case "yaml":
+          echo "Under development.";
+          break;
+        default:
+          echo "DEFAULT";
+        break;
+      }
+    }
   break;
 
 }
 $db = new MyDB() or die ("SQL CLASS ERROR");
-$type= str_replace("/","",$_SERVER['REQUEST_URI']);
+$type= str_replace("/",":",$_SERVER['REQUEST_URI']);
 $db->run("insert into ip (type,address,aDate,aTime) values ('$type','" . showIP2() . "','".date("Y-m-d")."','".date("H:i:s")."');");
 
- }
- else {
-   # code...
-   echo showIP();
+}
+else {
+# code...
+echo showIP();
 
+}
+
+function outputCSV($data) {
+        //$outputBuffer = fopen("php://output", 'w');
+        if (sizeOf($data) == 1){$data = $data[0];}
+        //foreach($data as $val) {
+        //    fputcsv($outputBuffer, array($val));
+        //}
+        //fclose($outputBuffer);
+        foreach ($data as $i=>$d)
+        {
+          echo $i . ",'" . addslashes($d) . "'\n";
+        }
+    }
+
+function processData()
+{
+  $id = explode("/",$_SERVER['REQUEST_URI']);
+  //echo $id[1];
+  switch ($id[1])
+  {
+    case "ip":
+      if ($id[2]=="xml"){return array(showIP()=>"data");}else{return array("data"=>showIP());}
+    break;
+    case "fqdn":
+    if ($id[2] == "xml"){
+    return array(showFQDN()=>"data");
+    }
+    else{
+      return array("data"=>showFQDN());
+    }
+    break;
+    case "ping":
+      $out = array();
+      $pat = '/Win/';
+      if (preg_match($pat,$_SERVER['SERVER_SIGNATURE']))
+      {
+        exec('ping -n 4 '.$_SERVER['REMOTE_ADDR'], $out);
+
+      }
+      else {
+        exec('ping -c 4 '.$_SERVER['REMOTE_ADDR'], $out);
+      }
+      return ($out);
+    break;
+    case "dl":
+    if ($id[2] == "xml"){  return array("Under Construction."=>"data");}else{return array("Under Contruction");}
+    break;
+    case "ul":
+      if ($id[2] == "xml"){return array("Under Construction."=>"data");}else{return array("Under Construction");}
+    break;
+    case "server":
+    ini_set('display_errors','off');
+        return array($_SERVER);
+    break;
+    case "os":
+      if ($id[2] == "xml"){return array(getOS()=>"data");}else{return array(getOS());}
+    break;
+    case "browser":
+      return array(getBrowser());
+    break;
+    case "help":
+      return array(getHelp());
+    break;
+  }
 }
 
 function getHelp(){
@@ -100,6 +232,7 @@ function getHelp(){
     echo "/server - server info<BR>";
     echo "/os - show operating system<BR>";
     echo "/browser - browser system<BR></p>";
+    echo "<hr><p>Simply add the data format as the second parameter (eg:/server/json) and it will represent the data as you want it.<br>The available formats are: CSV, JSON, XML, YAML, and Array.</p>";
     echo "</div>";
     echo "</div>";
 }
